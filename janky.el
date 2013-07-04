@@ -45,3 +45,12 @@
           (funcall callback status data)
         data))))
 
+(defun janky-ci-build-path (repo branch)
+  (concat janky-base-url repo "/" branch))
+
+(defun janky-ci-build (repo branch)
+  (janky-request (janky-ci-build-path repo branch)
+                 nil
+                 :format :raw :method "POST"))
+
+(provide 'janky)
