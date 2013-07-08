@@ -48,12 +48,19 @@
 (defun janky-repo-branch-path (repo branch)
   (concat janky-base-url repo "/" branch))
 
+(defun janky-read-repo-branch-args ()
+  (let ((repo (read-string "Repository: "))
+        (branch (read-string "Branch: ")))
+    (list repo branch)))
+
 (defun janky-ci-build (repo branch)
+  (interactive (janky-read-repo-branch-args))
   (janky-request (janky-repo-branch-path repo branch)
                  nil
                  :format :raw :method "POST"))
 
 (defun janky-ci-status (repo branch)
+  (interactive (janky-read-repo-branch-args))
   (janky-request (janky-repo-branch-path repo branch)
                         nil))
 
