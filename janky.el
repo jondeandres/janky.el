@@ -70,7 +70,7 @@
   (interactive (janky-read-repo-branch-args))
   (let ((status (plist-get (janky-last-build repo branch) :green)))
     (if (equal status t)
-        "Build success!"
-      "Build failed!")))
+        (message "Build success!")
+      (message "Build failed!"))))
 
 (provide 'janky)
